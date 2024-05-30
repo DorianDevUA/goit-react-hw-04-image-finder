@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IconButton } from './IconButton';
 
-export const StyledIconBtn = styled.button`
+export const StyledIconBtn = styled(IconButton)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -8,8 +9,8 @@ export const StyledIconBtn = styled.button`
   font: inherit;
   margin: 0;
   padding: 10px;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.green};
+  color: ${({ theme }) => theme.colors.red};
+  background-color: ${({ theme }) => theme.colors.white};
 
   border: none;
   border-radius: 50%;
