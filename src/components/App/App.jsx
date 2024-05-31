@@ -6,12 +6,12 @@ import { ImageGallery } from '../ImageGallery';
 import { Button } from '../Button';
 import { Loader } from '../Loader';
 import { DNA } from 'react-loader-spinner';
-import { NewModal } from '../Modal/NewModal';
 
 export class App extends Component {
   state = {
     gallery: [],
     searchRequest: '',
+    isLoading: false,
   };
 
   componentDidMount() {}
@@ -23,34 +23,48 @@ export class App extends Component {
 
     if (prevRequest !== currentRequest) {
       console.log('Відбулася зміна запиту');
+      this.setState({ isLoading: true });
       const response = await fetchImages(currentRequest);
-      this.setState({ gallery: response.hits });
+      this.setState({ gallery: response.hits, isLoading: false });
     }
   }
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
 
   getSearchQuery = searchRequest => {
     this.setState({ searchRequest });
   };
 
   render() {
-    const { gallery } = this.state;
+    const { gallery, isLoading } = this.state;
     console.log('gallery', gallery);
 
     return (
       <Container>
         <Searchbar onSearch={this.getSearchQuery} />
-        {gallery.length > 0 && <ImageGallery gallery={gallery} />}
-        {gallery.length > 0 && <Button />}
-        <Loader />
-        <DNA
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper"
-        />
-        {/* <NewModal gallery={gallery} /> */}
+        {gallery.length > 0 && (
+          <>
+            <ImageGallery gallery={gallery} onClose={this.toggleModal} />
+            <Button />
+          </>
+        )}
+        {isLoading && (
+          <>
+            <Loader />
+            <DNA
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="dna-loading"
+              wrapperStyle={{}}
+              wrapperClass="dna-wrapper"
+            />
+          </>
+        )}
       </Container>
     );
   }

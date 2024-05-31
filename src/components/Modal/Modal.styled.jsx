@@ -14,12 +14,12 @@ export const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-height: 300px;
-  max-width: 600px;
-  width: 100%;
-  padding: ${({ theme }) => theme.spacing(3)};
-  background-color: ${({ theme }) => theme.colors.primaryBackground};
-  border-radius: 3px;
+  max-width: 1024px;
+  /* min-width: 480px; */
+  /* min-height: 300px; */
+  /* width: 100%; */
+  border-radius: 4px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
 `;
