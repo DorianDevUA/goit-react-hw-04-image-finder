@@ -66,9 +66,7 @@ export class App extends Component {
     return (
       <Wrapper>
         <Searchbar onSubmit={this.getSearchQuery} />
-
         {isImagesExist && <ImageGallery images={images} />}
-
         {isLoading && <Loader />}
         {isImagesExist && !isLastPage && (
           <Button onClick={this.handleLoadMore} />

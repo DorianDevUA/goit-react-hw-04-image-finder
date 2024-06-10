@@ -17,6 +17,5 @@ export const fetchGallery = async (searchQuery, page = 1) => {
   });
 
   const response = await axios(`?${searchParams}`);
-  console.log(response);
   return response.data;
 };
