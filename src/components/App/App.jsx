@@ -21,7 +21,6 @@ export class App extends Component {
     const prevQuery = prevState.searchQuery;
 
     if (prevQuery !== searchQuery) {
-      console.log('Змінився пошуковий запит, робимо fetch!');
       this.setState({ images: [], page: 1, isLoading: true, totalHits: 0 });
 
       try {
